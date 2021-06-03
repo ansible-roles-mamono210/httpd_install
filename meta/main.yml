@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  role_name: httpd_install
+  author: mamono210
+  description: Install httpd
+  company: no name
+  license: "license (BSD, MIT)"
+  min_ansible_version: 4.0
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+  galaxy_tags: []
+dependencies: []

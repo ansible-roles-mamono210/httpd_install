@@ -1,12 +1,11 @@
+---
 - name: Install Apache HTTP Server
-  become: yes
-  yum:
+  ansible.builtin.package:
     name: httpd
     state: present
 
 - name: Start Apache HTTP Server
-  become: yes
-  service:
+  ansible.builtin.service:
     name: httpd
     state: started
     enabled: yes

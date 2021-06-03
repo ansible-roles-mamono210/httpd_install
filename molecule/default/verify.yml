@@ -1,0 +1,32 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+
+  tasks:
+    - name: "Check if APACHE is installed"
+      ansible.builtin.package_facts:
+        manager: "auto"
+
+    - name: "Apache result"
+      ansible.builtin.debug:
+        msg: "Apache found"
+      when: "'httpd' in ansible_facts.packages"
+
+    - name: "Apache result"
+      ansible.builtin.debug:
+        msg: "Apache NOT found"
+      when: "'httpd' not in ansible_facts.packages"
+
+    - name: Print the package facts
+      ansible.builtin.debug:
+        var: ansible_facts.packages
+
+    - name: Check OS version
+      ansible.builtin.command: cat /etc/redhat-release
+      register: os_version
+      changed_when: false
+
+    - name: Show OS version
+      ansible.builtin.debug:
+        var: os_version
