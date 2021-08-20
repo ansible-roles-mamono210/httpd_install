@@ -1,0 +1,4 @@
+---
+- name: Test command
+  ansible.builtin.command: /bin/true
+  notify: restart Apache

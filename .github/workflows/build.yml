@@ -34,6 +34,57 @@ jobs:
           | GREP_COLORS='mt=01;33' egrep --color=always 'ansible.* '
           ansible-lint --version
 
+  handler_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Show uptime
+        run: |
+          uptime
+
+      - name: Show IPv4 address
+        run: |
+          hostname -I
+
+      - name: Install Ansible
+        run: |
+          pip install ansible
+
+      - name: Docker run CentOS8 image sudo installed
+        run: docker run -d --privileged --name=centos8 ghcr.io/docker-hub-tm/ansible-test/centos8:latest /sbin/init
+
+      - name: Install Ansible galaxy roles
+        run: |
+          ansible-galaxy install \
+          -r tests/roles/requirements.yml
+
+      - name: Execute ansible-playbook command
+        run: |
+          ansible-playbook -i 'centos8,' \
+          -c docker -u ansible tests/test_handler.yml
+        env:
+          ANSIBLE_FORCE_COLOR: '1'
+          PROFILE_TASKS_SORT_ORDER: 'none'
+          PROFILE_TASKS_TASK_OUTPUT_LIMIT: '100'
+          PY_COLORS: '1'
+          TZ: 'Asia/Tokyo'
+
+      - name: Show Ansible version
+        run: |
+          pip list | grep ansible \
+          | GREP_COLORS='mt=01;34' egrep --color=always '[[:digit:]]' \
+          | GREP_COLORS='mt=01;34' egrep --color=always '\.' \
+          | GREP_COLORS='mt=01;33' egrep --color=always 'ansible.* '
+          ansible --version
+
   molecule:
     runs-on: ubuntu-latest
     strategy:
