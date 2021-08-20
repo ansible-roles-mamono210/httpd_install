@@ -3,5 +3,5 @@
   become: true
   force_handlers: True
   roles:
-    - mamono210.httpd_install
+    - httpd_install
     - test_handler

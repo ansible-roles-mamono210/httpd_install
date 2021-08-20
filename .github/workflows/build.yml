@@ -61,10 +61,9 @@ jobs:
       - name: Docker run CentOS8 image sudo installed
         run: docker run -d --privileged --name=centos8 ghcr.io/docker-hub-tm/ansible-test/centos8:latest /sbin/init
 
-      - name: Install Ansible galaxy roles
+      - name: Install galaxy roles
         run: |
-          ansible-galaxy install \
-          -r tests/roles/requirements.yml
+          ansible-galaxy install git+https://github.com/${{ github.repository }},${{ github.sha }}
 
       - name: Execute ansible-playbook command
         run: |
