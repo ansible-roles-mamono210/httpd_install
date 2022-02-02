@@ -3,7 +3,7 @@
 Role Description
 =========
 
-Installs [Apache](https://httpd.apache.org) for CentOS7/8.
+Installs [Apache](https://httpd.apache.org) for CentOS7 / CentOS Stream 8.
 
 Requirements
 ------------

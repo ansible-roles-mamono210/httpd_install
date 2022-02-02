@@ -31,7 +31,7 @@ jobs:
           pip install ansible
 
       - name: Docker run CentOS8 image sudo installed
-        run: docker run -d --privileged --name=centos8 ghcr.io/docker-hub-tm/ansible-test/centos8:latest /sbin/init
+        run: docker run -d --privileged --name=centos-stream8 ghcr.io/docker-hub-tm/ansible-test/centos-stream8:latest /sbin/init
 
       - name: Install galaxy roles
         run: |
@@ -39,7 +39,7 @@ jobs:
 
       - name: Execute ansible-playbook command
         run: |
-          ansible-playbook -i 'centos8,' \
+          ansible-playbook -i 'centos-stream8,' \
           -c docker -u ansible tests/test_handler.yml
         env:
           ANSIBLE_FORCE_COLOR: '1'
@@ -61,10 +61,10 @@ jobs:
     with:
       molecule-image: ghcr.io/docker-hub-tm/ansible-test/centos7:latest
 
-  molecule-centos8:
+  molecule-centos-stream8:
     uses: github-actions-reusable-workflows/molecule-docker/.github/workflows/workflows.yml@main
     with:
-      molecule-image: ghcr.io/docker-hub-tm/ansible-test/centos8:latest
+      molecule-image: ghcr.io/docker-hub-tm/ansible-test/centos-stream8:latest
 
   trailing-whitespace:
     name: Find Trailing Whitespace
