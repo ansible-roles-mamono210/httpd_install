@@ -3,9 +3,6 @@ name: build
 on: [deployment, push]
 
 jobs:
-  ansible-lint:
-    uses: github-actions-reusable-workflows/ansible-lint/.github/workflows/workflows.yml@main
-
   handler_test:
     runs-on: ubuntu-latest
 
