@@ -1,5 +1,2 @@
 ---
 parseable: true
-
-exclude_paths:
-  - tests/roles/test_handler/tasks/main.yml
