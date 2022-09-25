@@ -52,25 +52,3 @@ jobs:
           | GREP_COLORS='mt=01;34' egrep --color=always '\.' \
           | GREP_COLORS='mt=01;33' egrep --color=always 'ansible.* '
           ansible --version
-
-  trailing-whitespace:
-    name: Find Trailing Whitespace
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: harupy/find-trailing-whitespace@master
-
-  yamllint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Execute yamllint
-        run: yamllint *
-
-      - name: Show yamllint version
-        run: |
-          yamllint --version \
-          | GREP_COLORS='mt=01;34' egrep --color=always '[[:digit:]]' \
-          | GREP_COLORS='mt=01;34' egrep --color=always '\.' \
-          | GREP_COLORS='mt=01;33' egrep --color=always 'yamllint.* '

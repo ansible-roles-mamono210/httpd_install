@@ -31,6 +31,7 @@ rules:
     level: error
     ignore: |
        .github/workflows/build.yml
+       .circleci/config.yml
   new-line-at-end-of-file: enable
   new-lines: enable
   octal-values: disable
