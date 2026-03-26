@@ -1,7 +1,0 @@
----
-- hosts: all
-  become: true
-  force_handlers: True
-  roles:
-    - httpd_install
-    - test_handler

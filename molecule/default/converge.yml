@@ -2,7 +2,8 @@
 - name: Converge
   hosts: all
   become: true
-  vars:
-    ansible_user: ansible
-  roles:
-    - httpd_install
+
+  tasks:
+    - name: Execute
+      ansible.builtin.include_role:
+        name: httpd_install
